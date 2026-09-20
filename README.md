@@ -61,3 +61,133 @@ Check the deployment with:
 ## Notes
 
 This starter focuses on the SaaS architecture foundation: tenant isolation, auth, branch handling, and starter API contracts. It is intentionally small and production-ready enough to be extended.
+
+
+
+## Quy trình làm việc dành cho Developer
+
+### 1. Trước khi bắt đầu task mới
+
+Luôn lấy code mới nhất từ `main`:
+
+```bash
+git checkout main
+git pull origin main
+```
+
+### 2. Tạo branch mới cho task
+
+Không code trực tiếp trên `main`.
+
+Thêm chức năng:
+
+```bash
+git checkout -b feature/<ten-task>
+```
+
+Sửa lỗi:
+
+```bash
+git checkout -b fix/<ten-task>
+```
+
+Ví dụ:
+
+```bash
+git checkout -b feature/order-realtime
+```
+
+### 3. Code và commit
+
+Sau khi hoàn thành một phần công việc:
+
+```bash
+git status
+git add .
+git commit -m "feat: add realtime order updates"
+```
+
+Quy ước commit:
+
+```text
+feat:      thêm chức năng
+fix:       sửa lỗi
+refactor:  cải tổ code
+perf:      tối ưu hiệu năng
+docs:      cập nhật tài liệu
+chore:     thay đổi kỹ thuật khác
+```
+
+### 4. Push branch lên GitHub
+
+Lần đầu:
+
+```bash
+git push -u origin feature/order-realtime
+```
+
+Các lần tiếp theo:
+
+```bash
+git push
+```
+
+### 5. Hoàn thành task → tạo Pull Request
+
+Trên GitHub tạo Pull Request:
+
+```text
+feature/<ten-task> → main
+```
+
+Trong PR ghi rõ:
+
+- Đã làm/thay đổi những gì.
+- Cách kiểm tra.
+- Có thay đổi database/migration không.
+- Có thêm biến môi trường/config mới không.
+
+Sau đó chờ review.
+
+### 6. Nếu được yêu cầu sửa
+
+Tiếp tục sửa trên chính branch hiện tại:
+
+```bash
+git add .
+git commit -m "fix: address review feedback"
+git push
+```
+
+Pull Request sẽ tự cập nhật.
+
+Không cần tạo PR mới.
+
+### 7. Sau khi PR đã được merge
+
+Cập nhật lại `main`:
+
+```bash
+git checkout main
+git pull origin main
+```
+
+Xóa branch cũ:
+
+```bash
+git branch -d feature/order-realtime
+```
+
+Sau đó task tiếp theo lại tạo branch mới từ `main`.
+
+## Quy tắc bắt buộc
+
+- Không code trực tiếp trên `main`.
+- Không push trực tiếp lên `main`.
+- Không tự merge Pull Request.
+- Mỗi task sử dụng một branch riêng.
+- Không commit `.env`, password, API key hoặc secret.
+- Không `git push --force`.
+- Không sửa/xóa Prisma migration đã chạy.
+- Trước khi tạo branch mới phải `pull` `main` mới nhất.
+- Code phải build/test được trước khi tạo Pull Request.
