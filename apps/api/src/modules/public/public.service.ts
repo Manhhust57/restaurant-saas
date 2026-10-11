@@ -1,9 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
+import { OrdersService } from '../orders/orders.service';
 
 @Injectable()
 export class PublicService {
-    constructor(private readonly prisma: PrismaService) { }
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly ordersService: OrdersService,
+    ) {}
 
     async getTableByToken(token: string) {
         const table = await this.prisma.table.findUnique({
@@ -22,6 +26,14 @@ export class PublicService {
 
     async getMenuByTableToken(token: string) {
         const table = await this.getTableByToken(token);
+        const tenant = await this.prisma.tenant.findUnique({
+            where: { id: table.tenantId },
+            select: { name: true },
+        });
+
+        if (!tenant) {
+            throw new NotFoundException('Restaurant not found');
+        }
 
         const categories = await this.prisma.category.findMany({
             where: {
@@ -38,75 +50,27 @@ export class PublicService {
         });
 
         return {
-            table,
+            table: { ...table, tenant },
             categories,
         };
     }
 
-    async createOrderFromTable(token: string, payload: { items: Array<{ productId: string; quantity: number; note?: string }> }) {
+    async createOrderFromTable(
+        token: string,
+        payload: { items: Array<{ productId: string; quantity: number; note?: string }> },
+    ) {
         const table = await this.getTableByToken(token);
 
         if (!payload.items || payload.items.length === 0) {
             throw new Error('Order must contain at least one item');
         }
 
-        const products = await this.prisma.product.findMany({
-            where: {
-                tenantId: table.tenantId,
-                id: { in: payload.items.map((item) => item.productId) },
-            },
-        }) as Array<{
-            id: string;
-            name: string;
-            price: { toNumber: () => number };
-        }>;
-
-        const productMap = new Map(products.map((product) => [product.id, product]));
-
-        const orderItemsData = payload.items.map((item) => {
-            const product = productMap.get(item.productId) as { id: string; name: string; price: { toNumber: () => number } } | undefined;
-            if (!product) {
-                throw new NotFoundException(`Product ${item.productId} not found`);
-            }
-
-            const quantity = Number(item.quantity ?? 1);
-            const unitPrice = product.price.toNumber();
-            const total = unitPrice * quantity;
-
-            return {
-                product: { connect: { id: product.id } },
-                productName: product.name,
-                unitPrice,
-                quantity,
-                total,
-                note: item.note ?? null,
-                status: 'PENDING' as const,
-            };
+        // One open bill per table — create() appends when a session order already exists.
+        return this.ordersService.create(table.tenantId, {
+            branchId: table.branchId,
+            tableId: table.id,
+            note: 'Created from QR table ordering',
+            items: payload.items,
         });
-
-        const subtotal = orderItemsData.reduce((sum, item) => sum + Number(item.total), 0);
-        const orderNumber = `QR-${Date.now()}`;
-
-        const order = await this.prisma.order.create({
-            data: {
-                tenantId: table.tenantId,
-                branchId: table.branchId,
-                tableId: table.id,
-                orderNumber,
-                subtotal,
-                discount: 0,
-                total: subtotal,
-                status: 'PENDING',
-                note: 'Created from QR table ordering',
-                items: {
-                    create: orderItemsData,
-                },
-            },
-            include: {
-                items: true,
-            },
-        });
-
-        return order;
     }
 }

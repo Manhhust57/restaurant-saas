@@ -224,6 +224,8 @@ model OrderItem {
   total         Decimal         @db.Decimal(12, 2)
   note          String?
   status        OrderItemStatus @default(PENDING)
+  /// True when appended after kitchen already started this order (gọi thêm).
+  isExtra       Boolean         @default(false)
 
   order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   product Product @relation(fields: [productId], references: [id])

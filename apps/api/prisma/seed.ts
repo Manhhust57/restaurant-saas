@@ -1,5 +1,7 @@
 import { PrismaClient, MembershipRole, TenantStatus } from '@prisma/client';
 import bcrypt from 'bcryptjs';
+import { pizzaAbcMenu } from './pizza-abc-menu';
+import { pizzaAbcImages } from './pizza-abc-images';
 
 const prisma = new PrismaClient();
 
@@ -55,49 +57,34 @@ async function main() {
         },
     });
 
-    const category = await prisma.category.createMany({
-        data: [
-            { tenantId: tenant.id, name: 'Pizza', sortOrder: 1, isActive: true },
-            { tenantId: tenant.id, name: 'Nước uống', sortOrder: 2, isActive: true },
-            { tenantId: tenant.id, name: 'Món phụ', sortOrder: 3, isActive: true },
-        ],
-        skipDuplicates: true,
-    });
-
-    const categoryList = await prisma.category.findMany({ where: { tenantId: tenant.id } });
-
-    await prisma.product.createMany({
-        data: [
-            {
-                tenantId: tenant.id,
-                categoryId: categoryList[0]?.id ?? '',
-                name: 'Pizza Margherita',
-                description: 'Pizza truyền thống',
-                price: 190000,
-                imageUrl: null,
-                isActive: true,
-            },
-            {
-                tenantId: tenant.id,
-                categoryId: categoryList[0]?.id ?? '',
-                name: 'Pizza Hải Sản',
-                description: 'Pizza hải sản tươi',
-                price: 230000,
-                imageUrl: null,
-                isActive: true,
-            },
-            {
-                tenantId: tenant.id,
-                categoryId: categoryList[1]?.id ?? '',
-                name: 'Coca Cola',
-                description: 'Nước ngọt lon 330ml',
-                price: 25000,
-                imageUrl: null,
-                isActive: true,
-            },
-        ],
-        skipDuplicates: false,
-    });
+    // Menu chuẩn = pizza-abc-menu.ts. Không tạo nhóm demo Pizza/Nước uống/Món phụ.
+    const existingCategories = await prisma.category.count({ where: { tenantId: tenant.id } });
+    if (existingCategories === 0) {
+        for (const [index, category] of pizzaAbcMenu.entries()) {
+            const created = await prisma.category.create({
+                data: {
+                    tenantId: tenant.id,
+                    name: category.name,
+                    sortOrder: index + 1,
+                    isActive: true,
+                },
+            });
+            await prisma.product.createMany({
+                data: category.products.map((product) => ({
+                    tenantId: tenant.id,
+                    categoryId: created.id,
+                    name: product.name,
+                    description: product.description,
+                    price: product.price,
+                    imageUrl: pizzaAbcImages[product.name] ?? null,
+                    isActive: true,
+                })),
+            });
+        }
+        console.log(`Seeded menu from pizza-abc-menu.ts (${pizzaAbcMenu.length} categories)`);
+    } else {
+        console.log(`Menu already present (${existingCategories} categories); skipped menu seed`);
+    }
 
     await prisma.table.createMany({
         data: [

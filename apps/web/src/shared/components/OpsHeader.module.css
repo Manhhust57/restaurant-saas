@@ -1,0 +1,106 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 20px;
+    background: #fff;
+    border-bottom: 1px solid #eef2f7;
+    color: #111827;
+}
+
+.headerDark {
+    background: #0b1220;
+    border-bottom-color: rgba(148, 163, 184, 0.16);
+    color: #f8fafc;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.titleBlock {
+    min-width: 0;
+}
+
+.kicker {
+    margin: 0;
+    color: #9ca3af;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.headerDark .kicker {
+    color: #64748b;
+}
+
+.title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 650;
+    line-height: 1.2;
+}
+
+.summary {
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.headerDark .summary {
+    color: #94a3b8;
+}
+
+.actions {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.actions a,
+.actions button,
+.back {
+    background: transparent;
+    color: #4b5563;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    text-decoration: none;
+    font-weight: 600;
+    min-height: 36px;
+}
+
+.headerDark .actions a,
+.headerDark .actions button,
+.headerDark .back {
+    color: #cbd5e1;
+}
+
+.actions a:hover,
+.actions button:hover,
+.back:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.headerDark .actions a:hover,
+.headerDark .actions button:hover,
+.headerDark .back:hover {
+    background: rgba(148, 163, 184, 0.12);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 14px;
+    }
+}

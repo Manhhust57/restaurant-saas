@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
@@ -6,7 +7,7 @@ export class ReportsService {
     constructor(private readonly prisma: PrismaService) { }
 
     async getSalesSummary(tenantId: string, filters: { branchId?: string; from?: string; to?: string }) {
-        const where: any = {
+        const where: Prisma.OrderWhereInput = {
             tenantId,
             status: { not: 'CANCELLED' },
         };
@@ -71,7 +72,7 @@ export class ReportsService {
     private parseDate(value: string, endOfDay: boolean) {
         const date = new Date(value);
         if (Number.isNaN(date.getTime())) {
-            throw new Error(`Invalid report date: ${value}`);
+            throw new BadRequestException(`Invalid report date: ${value}`);
         }
 
         if (endOfDay && /^\d{4}-\d{2}-\d{2}$/.test(value)) {

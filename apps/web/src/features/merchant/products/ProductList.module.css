@@ -1,0 +1,11 @@
+.details {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.price {
+    flex-shrink: 0;
+    white-space: nowrap;
+}

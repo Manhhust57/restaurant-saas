@@ -1,0 +1,23 @@
+export const pizzaAbcImages: Record<string, string> = {
+    "Pizza Margherita · 25 cm": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Margherita_pizza.jpg",
+    "Pizza Pepperoni · 25 cm": "https://images.unsplash.com/photo-1628840042765-356cda07504e",
+    "Pizza Hawaiian · 25 cm": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hawaiian_pizza_image.jpg",
+    "Pizza bốn loại phô mai · 25 cm": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Four_cheese_pizza.jpg",
+    "Pizza hải sản · 25 cm": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Seafood_pizza_(1).jpg",
+    "Pizza bò BBQ · 25 cm": "https://images.unsplash.com/photo-1579751626657-72bc17010498",
+    "Pizza gà nấm · 25 cm": "https://images.unsplash.com/photo-1566843972142-a7fcb70de55a",
+    "Pizza rau củ · 25 cm": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vegetable_Pizza.jpg",
+    "Spaghetti bò bằm": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Spaghetti_bolognese.jpg",
+    "Spaghetti kem nấm": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Baked_Spaghetti_with_mushrooms.JPG",
+    "Spaghetti hải sản": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Seafood_Spaghetti,_Jun_2024.jpg",
+    "Bánh mì bơ tỏi · 4 miếng": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Garlic_Bread_(3008052276).jpg",
+    "Khoai tây chiên": "https://commons.wikimedia.org/wiki/Special:Redirect/file/French_Fries_(4114350479).jpg",
+    "Cánh gà BBQ · 4 miếng": "https://commons.wikimedia.org/wiki/Special:Redirect/file/BBQ_chicken_wing.jpg",
+    "Salad rau củ": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Vegetable_Salad_img.jpg",
+    "Coca-Cola · lon 320 ml": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Coca-Cola_Bottle.jpg",
+    "Sprite · lon 320 ml": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sprite_bottle.JPG",
+    "Trà đào · 400 ml": "https://images.unsplash.com/photo-1556679343-c7306c1976bc",
+    "Nước suối · 500 ml": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bottled_water.jpg",
+    "Panna cotta dâu": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Panna_cotta_with_strawberries_and_blueberries.JPG",
+    "Brownie chocolate": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Chocolate_brownie_(3395978299).jpg"
+};

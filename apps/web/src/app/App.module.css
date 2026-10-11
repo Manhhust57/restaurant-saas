@@ -1,0 +1,137 @@
+.app-shell {
+    display: flex;
+    min-height: 100vh;
+}
+.sidebar {
+    flex-shrink: 0;
+    width: 260px;
+    background: rgba(15, 23, 42, 0.9);
+    border-right: 1px solid rgba(148, 163, 184, 0.2);
+    padding: 24px 18px;
+}
+.sidebar h1 {
+    margin: 0 0 24px;
+    font-size: 1.5rem;
+}
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sidebar a {
+    color: #dbeafe;
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+.sidebar a:hover {
+    background: rgba(59, 130, 246, 0.12);
+}
+.content {
+    flex: 1;
+    min-width: 0;
+    padding: 32px;
+}
+.management {
+    color: #20252b;
+    background: #f5f6f7;
+    color-scheme: light;
+}
+.management .sidebar {
+    width: 220px;
+    background: #fff;
+    border-color: #d9dde2;
+    padding: 20px 12px;
+}
+.management .sidebar h1 { font-size: 1.1rem; }
+.management .sidebar nav { gap: 4px; }
+.management .sidebar a {
+    color: #303740;
+    border-radius: 4px;
+    transition: none;
+}
+.management .sidebar a:hover,
+.management .sidebar a[aria-current='page'] {
+    background: #e9ecef;
+    color: #111827;
+}
+.management .sidebar a[aria-current='page'] { font-weight: 650; }
+.management .content { padding: 24px; }
+.management h2 { font-size: 1.5rem; line-height: 1.35; }
+.management h3 { font-size: 1.05rem; }
+.management p,
+.management li { color: #374151; }
+.management a { color: #334155; }
+.management :global(.eyebrow) {
+    color: #667085;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+.management :global(.customer-header) { align-items: center; margin-bottom: 20px; }
+.management :global(.card) {
+    background: #fff;
+    border: 1px solid #d9dde2;
+    border-radius: 4px;
+    box-shadow: none;
+    padding: 20px;
+}
+.management button {
+    background: #fff;
+    color: #20252b;
+    border: 1px solid #b9c0c8;
+    border-radius: 4px;
+    font-weight: 600;
+    padding: 8px 12px;
+    min-height: 40px;
+}
+.management button:hover:not(:disabled) { background: #eef0f2; }
+.management button[type='submit'] {
+    background: #343a40;
+    color: #fff;
+    border-color: #343a40;
+}
+.management button[type='submit']:hover:not(:disabled) { background: #20252b; }
+.management button:disabled { opacity: 0.5; }
+.management :is(button, a, input, select):focus-visible {
+    outline: 2px solid #475569;
+    outline-offset: 2px;
+}
+.management :global(.error) {
+    color: #991b1b;
+    background: #fff1f2;
+    border-color: #fecaca;
+    border-radius: 4px;
+}
+.management :global(.success) {
+    color: #166534;
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    border-radius: 4px;
+}
+@media (max-width: 768px) {
+.app-shell {
+        flex-direction: column;
+    }
+.sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+    .sidebar h1 {
+        margin-bottom: 12px;
+    }
+    .sidebar nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px;
+    }
+.content {
+        padding: 20px;
+    }
+    .management .sidebar { width: 100%; }
+    .management .content { padding: 16px; }
+    .management :global(.customer-header) { align-items: flex-start; }
+}

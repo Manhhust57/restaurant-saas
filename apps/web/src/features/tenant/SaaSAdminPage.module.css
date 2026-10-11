@@ -1,0 +1,108 @@
+.admin-page {
+    max-width: 1100px;
+}
+.admin-message {
+    margin-bottom: 16px;
+}
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+.admin-panel {
+    padding: 16px;
+    border: 1px solid #d9dde2;
+    border-radius: 4px;
+    background: #fff;
+}
+.admin-page > .admin-panel {
+    margin-top: 16px;
+}
+.admin-panel h3 {
+    margin: 0 0 14px;
+}
+.admin-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #d9dde2;
+}
+.admin-summary span,
+.admin-meta {
+    color: #667085;
+    font-size: 0.9rem;
+}
+.admin-form {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.admin-form label {
+    display: grid;
+    gap: 6px;
+    color: #374151;
+    font-weight: 600;
+}
+.admin-form input,
+.admin-form select {
+    width: 100%;
+    border: 1px solid #d9dde2;
+    border-radius: 4px;
+    padding: 11px 12px;
+    color: #20252b;
+    background: #fff;
+}
+.field-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+.admin-form.editor {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #d9dde2;
+}
+.admin-row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 8px;
+    padding: 10px 12px;
+    color: #20252b;
+    background: #fff;
+    border: 1px solid #d9dde2;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: left;
+}
+.admin-row.static {
+    cursor: default;
+}
+.admin-row small {
+    color: #667085;
+    font-weight: 500;
+}
+.admin-row.active {
+    border-color: #64748b;
+    background: #edf0f3;
+}
+.ghost-button {
+    color: #20252b;
+    background: transparent;
+    border: 1px solid #d9dde2;
+}
+@media (max-width: 768px) {
+.admin-grid,
+.field-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.admin-row { overflow-wrap: anywhere; }
+.admin-row > * { min-width: 0; }
+.admin-form input, .admin-form select { min-width: 0; }

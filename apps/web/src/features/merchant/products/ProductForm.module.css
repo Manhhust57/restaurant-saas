@@ -1,0 +1,53 @@
+.preview { width: 160px; }
+.preview > div { aspect-ratio: 5 / 4; border-radius: 6px; }
+.cropDialog {
+    width: min(440px, calc(100% - 24px));
+    padding: 16px;
+    border: 1px solid #d9dde2;
+    border-radius: 12px;
+    color: #20252b;
+    background: #fff;
+}
+.cropDialog::backdrop { background: rgb(0 0 0 / 65%); }
+.cropDialog h4 { margin: 0 0 8px; }
+.cropDialog p { margin: 0 0 12px; color: #667085; font-size: 0.9rem; }
+.cropStage {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #111827;
+    touch-action: none;
+    cursor: grab;
+}
+.cropStage:active { cursor: grabbing; }
+.cropBlur,
+.cropWindow img {
+    position: absolute;
+    max-width: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+.cropBlur {
+    z-index: 0;
+    filter: blur(8px) brightness(0.55);
+}
+.cropWindow {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    margin: 56px 0;
+    overflow: hidden;
+    box-shadow: 0 0 0 2px #fff;
+}
+.zoomLabel {
+    display: grid;
+    gap: 6px;
+    margin-top: 12px;
+    font-weight: 600;
+}
+.zoomLabel input { width: 100%; padding: 0; }
+.cropActions { display: flex; gap: 8px; margin-top: 12px; }
+.cropActions button { flex: 1; min-height: 44px; }
+.cropCancel { color: #20252b; background: #fff; border: 1px solid #d9dde2; }

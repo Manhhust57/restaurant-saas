@@ -1,7 +1,9 @@
-import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { MembershipRole } from '@prisma/client';
 import * as bcrypt from 'bcryptjs';
 import { PrismaService } from '../../prisma/prisma.service';
+import type { StaffRole } from './dto/register.dto';
 
 @Injectable()
 export class AuthService {
@@ -10,22 +12,46 @@ export class AuthService {
         private readonly jwtService: JwtService,
     ) { }
 
-    async register(email: string, password: string, fullName: string) {
-        const existingUser = await this.prisma.user.findUnique({ where: { email } });
+    async registerStaff(
+        tenantId: string,
+        payload: { email: string; password: string; fullName: string; role: StaffRole },
+    ) {
+        if (!tenantId) {
+            throw new BadRequestException('Tenant context is required');
+        }
 
+        const existingUser = await this.prisma.user.findUnique({ where: { email: payload.email } });
         if (existingUser) {
             throw new ConflictException('User already exists');
         }
 
-        const passwordHash = await bcrypt.hash(password, 10);
+        const passwordHash = await bcrypt.hash(payload.password, 10);
         const user = await this.prisma.user.create({
-            data: { email, passwordHash, fullName },
+            data: {
+                email: payload.email,
+                passwordHash,
+                fullName: payload.fullName,
+                memberships: {
+                    create: {
+                        tenantId,
+                        role: payload.role as MembershipRole,
+                    },
+                },
+            },
+            include: {
+                memberships: {
+                    where: { tenantId },
+                },
+            },
         });
 
+        const membership = user.memberships[0];
         return {
             id: user.id,
             email: user.email,
             fullName: user.fullName,
+            tenantId,
+            role: membership.role,
         };
     }
 
@@ -48,7 +74,7 @@ export class AuthService {
         const tenantId = defaultMembership?.tenantId ?? '';
         const role = defaultMembership?.role ?? 'OWNER';
 
-        const payload = {
+        const tokenPayload = {
             sub: user.id,
             email: user.email,
             tenantId,
@@ -56,7 +82,7 @@ export class AuthService {
         };
 
         return {
-            accessToken: this.jwtService.sign(payload),
+            accessToken: this.jwtService.sign(tokenPayload),
             user: {
                 id: user.id,
                 email: user.email,
@@ -87,7 +113,7 @@ export class AuthService {
             throw new UnauthorizedException('User not found');
         }
 
-        const payload = {
+        const tokenPayload = {
             sub: user.id,
             email: user.email,
             tenantId,
@@ -95,7 +121,7 @@ export class AuthService {
         };
 
         return {
-            accessToken: this.jwtService.sign(payload),
+            accessToken: this.jwtService.sign(tokenPayload),
             user: {
                 id: user.id,
                 email: user.email,
