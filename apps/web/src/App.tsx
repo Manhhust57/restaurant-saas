@@ -30,6 +30,7 @@ export default function App() {
         };
     }, [pathname]);
 
+    if (pathname === '/') return <HomePage />;
     if (pathname === '/customer') return <CustomerPage />;
     if (pathname === '/kitchen') return <KitchenPage />;
     if (pathname === '/pos') return <PosPage />;
