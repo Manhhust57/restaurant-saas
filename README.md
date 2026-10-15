@@ -46,7 +46,7 @@ all placeholder secrets and the public origin. The file is ignored by git and
 is loaded automatically by `docker-compose.prod.yml`. Then build and start the
 production stack:
 
-   docker compose -f docker-compose.prod.yml up -d --build
+   docker compose --env-file .env.prod -f docker-compose.prod.yml up -d --build
 
 The web container serves the application on `WEB_PORT` and proxies `/api` and
 `/health` to the API. The API waits for a healthy PostgreSQL container and runs

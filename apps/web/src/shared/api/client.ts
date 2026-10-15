@@ -1,4 +1,9 @@
-export const API_BASE_URL = import.meta.env.VITE_API_URL ?? '';
+function apiOrigin(): string {
+    const raw = (import.meta.env.VITE_API_URL ?? '').trim().replace(/\/+$/, '');
+    return raw.replace(/\/api(?:\/v1)?$/, '');
+}
+
+export const API_BASE_URL = apiOrigin();
 
 type ApiOptions = RequestInit & { authenticated?: boolean; redirectOnUnauthorized?: boolean };
 

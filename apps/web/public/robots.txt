@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /admin
+Disallow: /saas
+Disallow: /pos
+Disallow: /kitchen
+
+Sitemap: https://toquocmanh.id.vn/sitemap.xml

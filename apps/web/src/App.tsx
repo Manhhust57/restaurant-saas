@@ -10,10 +10,15 @@ import LoginPage from './features/auth/LoginPage';
 import HomePage from './features/home/HomePage';
 import { navItemsForRole } from './features/auth/roleAccess';
 import { loadSession, type Session } from './shared/auth/session';
+import { applyDocumentMeta } from './shared/seo/documentMeta';
 
 export default function App() {
     const { pathname } = useLocation();
     const [session, setSession] = useState<Session | null | undefined>(undefined);
+
+    useEffect(() => {
+        applyDocumentMeta(pathname);
+    }, [pathname]);
 
     useEffect(() => {
         let cancelled = false;
