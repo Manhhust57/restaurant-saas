@@ -353,6 +353,19 @@
     line-height: 1.55;
 }
 
+.cardLink {
+    display: inline-flex;
+    margin-top: 12px;
+    color: #fcd34d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.cardLink:hover {
+    color: #fde68a;
+}
+
 .steps {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -421,6 +434,15 @@
     justify-content: space-between;
     gap: 12px;
     flex-wrap: wrap;
+}
+
+.footer a {
+    color: #94a3b8;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #e2e8f0;
 }
 
 @media (max-width: 960px) {

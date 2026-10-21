@@ -3,6 +3,12 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
     plugins: [react()],
+    // Keep CSS module class names stable between client build and prerender SSR build.
+    css: {
+        modules: {
+            generateScopedName: '[name]__[local]___[hash:base64:5]',
+        },
+    },
     server: {
         host: true,
         port: 5173,
@@ -17,5 +23,9 @@ export default defineConfig({
                 ws: true,
             },
         },
+    },
+    preview: {
+        host: true,
+        port: 4173,
     },
 });

@@ -69,7 +69,7 @@ export default function HomePage() {
             <header className={styles.topbar}>
                 <Link to="/" className={styles.brand}>
                     <span className={styles.brandMark}>TQM</span>
-                    <span className={styles.brandName}>TQM Integrated</span>
+                    <span className={styles.brandName}>TQM</span>
                 </Link>
                 <div className={styles.topActions}>
                     <Link to="/login" className={styles.linkGhost}>
@@ -83,13 +83,13 @@ export default function HomePage() {
 
             <section className={styles.hero}>
                 <div>
-                    <p className={styles.eyebrow}>Restaurant SaaS</p>
+                    <p className={styles.eyebrow}>Phần mềm gọi món cho quán ăn</p>
                     <h1 className={styles.heroTitle}>
-                        Nền tảng quản lý nhà hàng <span>thông minh</span>
+                        Phần mềm gọi món QR <span>cho quán ăn, nhà hàng</span>
                     </h1>
                     <p className={styles.heroLead}>
-                        TQM Integrated giúp nhà hàng vận hành thống nhất: gọi món bằng QR, quản lý
-                        thực đơn, đơn hàng và quy trình bếp trên một hệ thống duy nhất.
+                        TQM là phần mềm quản lý nhà hàng giúp khách gọi món bằng QR, đồng bộ đơn
+                        realtime tới POS thu ngân và màn hình bếp trên một hệ thống duy nhất.
                     </p>
                     <div className={styles.heroCta}>
                         <Link to="/login" className={styles.btnPrimary}>
@@ -164,10 +164,10 @@ export default function HomePage() {
 
             <section id="features" className={styles.section}>
                 <div className={styles.sectionHead}>
-                    <h2>Tất cả công cụ vận hành trên một nền tảng</h2>
+                    <h2>Phần mềm quản lý quán ăn đầy đủ tính năng</h2>
                     <p>
-                        Từ trải nghiệm khách đến vận hành nội bộ, TQM Integrated giúp nhà hàng giảm
-                        thao tác thủ công và tăng tốc phục vụ.
+                        Từ gọi món QR đến vận hành nội bộ, TQM giúp quán ăn và nhà hàng giảm thao
+                        tác thủ công, tăng tốc phục vụ và kiểm soát đơn hàng rõ ràng.
                     </p>
                 </div>
                 <div className={styles.featureGrid}>
@@ -183,8 +183,8 @@ export default function HomePage() {
 
             <section className={styles.section}>
                 <div className={styles.sectionHead}>
-                    <h2>Quy trình vận hành rõ ràng</h2>
-                    <p>Triển khai nhanh, dùng ngay trong ca phục vụ thực tế.</p>
+                    <h2>Cách triển khai phần mềm gọi món QR</h2>
+                    <p>Thiết lập nhanh, dùng ngay trong ca phục vụ thực tế.</p>
                 </div>
                 <div className={styles.steps}>
                     {STEPS.map((step) => (
@@ -197,10 +197,48 @@ export default function HomePage() {
                 </div>
             </section>
 
+            <section className={styles.section}>
+                <div className={styles.sectionHead}>
+                    <h2>Tìm hiểu theo nhu cầu của quán</h2>
+                    <p>
+                        Mỗi trang đi sâu một bài toán vận hành để bạn chọn đúng phần mềm phù hợp.
+                    </p>
+                </div>
+                <div className={styles.featureGrid}>
+                    <article className={styles.featureCard}>
+                        <div className={styles.featureIcon}>QR</div>
+                        <h3>Phần mềm gọi món QR</h3>
+                        <p>Khách tự đặt món tại bàn, đơn về bếp và thu ngân realtime.</p>
+                        <Link to="/phan-mem-goi-mon-qr" className={styles.cardLink}>
+                            Xem chi tiết →
+                        </Link>
+                    </article>
+                    <article className={styles.featureCard}>
+                        <div className={styles.featureIcon}>QL</div>
+                        <h3>Phần mềm quản lý nhà hàng</h3>
+                        <p>Menu, bàn, đơn, báo cáo gom trên một hệ thống vận hành.</p>
+                        <Link to="/phan-mem-quan-ly-nha-hang" className={styles.cardLink}>
+                            Xem chi tiết →
+                        </Link>
+                    </article>
+                    <article className={styles.featureCard}>
+                        <div className={styles.featureIcon}>POS</div>
+                        <h3>POS nhà hàng</h3>
+                        <p>Thu ngân nhận đơn QR, chỉnh order và đồng bộ bếp.</p>
+                        <Link to="/pos-nha-hang" className={styles.cardLink}>
+                            Xem chi tiết →
+                        </Link>
+                    </article>
+                </div>
+            </section>
+
             <section className={styles.ctaBand}>
                 <div>
-                    <h2>Sẵn sàng vận hành với TQM Integrated</h2>
-                    <p>Đăng nhập để quản lý menu, bàn, đơn hàng và bếp trên cùng một hệ thống.</p>
+                    <h2>Dùng thử phần mềm gọi món TQM</h2>
+                    <p>
+                        Đăng nhập để quản lý menu, bàn, đơn hàng, POS và bếp trên cùng một hệ
+                        thống.
+                    </p>
                 </div>
                 <Link to="/login" className={styles.btnPrimary}>
                     Đăng nhập ngay
@@ -208,8 +246,14 @@ export default function HomePage() {
             </section>
 
             <footer className={styles.footer}>
-                <span>© {new Date().getFullYear()} TQM Integrated</span>
-                <span>Restaurant SaaS Management Platform</span>
+                <span>© {new Date().getFullYear()} TQM</span>
+                <span>
+                    <Link to="/phan-mem-goi-mon-qr">Gọi món QR</Link>
+                    {' · '}
+                    <Link to="/phan-mem-quan-ly-nha-hang">Quản lý nhà hàng</Link>
+                    {' · '}
+                    <Link to="/pos-nha-hang">POS nhà hàng</Link>
+                </span>
             </footer>
         </div>
     );

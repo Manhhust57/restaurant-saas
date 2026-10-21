@@ -8,6 +8,8 @@ import PosPage from './features/pos/PosPage';
 import KitchenPage from './features/kitchen/KitchenPage';
 import LoginPage from './features/auth/LoginPage';
 import HomePage from './features/home/HomePage';
+import LandingPage from './features/marketing/LandingPage';
+import { MARKETING_PATHS } from './features/marketing/landingContent';
 import { navItemsForRole } from './features/auth/roleAccess';
 import { loadSession, type Session } from './shared/auth/session';
 import { applyDocumentMeta } from './shared/seo/documentMeta';
@@ -31,6 +33,7 @@ export default function App() {
     }, [pathname]);
 
     if (pathname === '/') return <HomePage />;
+    if (MARKETING_PATHS.includes(pathname)) return <LandingPage />;
     if (pathname === '/customer') return <CustomerPage />;
     if (pathname === '/kitchen') return <KitchenPage />;
     if (pathname === '/pos') return <PosPage />;
@@ -60,6 +63,9 @@ export default function App() {
             <main className={styles['content']}>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                    {MARKETING_PATHS.map((path) => (
+                        <Route key={path} path={path} element={<LandingPage />} />
+                    ))}
                     <Route path="/customer" element={<CustomerPage />} />
                     <Route path="/pos" element={<PosPage />} />
                     <Route path="/kitchen" element={<KitchenPage />} />

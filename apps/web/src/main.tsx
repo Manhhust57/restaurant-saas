@@ -5,10 +5,21 @@ import App from './App';
 import './styles.css';
 import './styles/tokens.css';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const rootEl = document.getElementById('root');
+if (!rootEl) {
+    throw new Error('Root element #root was not found');
+}
+
+const app = (
     <React.StrictMode>
         <BrowserRouter>
             <App />
         </BrowserRouter>
-    </React.StrictMode>,
+    </React.StrictMode>
 );
+
+if (rootEl.hasChildNodes()) {
+    ReactDOM.hydrateRoot(rootEl, app);
+} else {
+    ReactDOM.createRoot(rootEl).render(app);
+}

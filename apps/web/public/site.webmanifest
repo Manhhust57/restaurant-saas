@@ -1,7 +1,8 @@
 {
-  "name": "TQM Integrated",
+  "id": "/",
+  "name": "TQM - Phần mềm gọi món QR",
   "short_name": "TQM",
-  "description": "Giải pháp quản lý nhà hàng với gọi món bằng QR, quản lý thực đơn, đơn hàng và quy trình bếp trên một nền tảng.",
+  "description": "Phần mềm gọi món bằng QR cho quán ăn và nhà hàng. Quản lý thực đơn, đơn hàng realtime, POS thu ngân và màn hình bếp.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -9,6 +10,8 @@
   "background_color": "#0b1220",
   "theme_color": "#0b1220",
   "lang": "vi",
+  "dir": "ltr",
+  "categories": ["business", "food", "productivity"],
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
@@ -33,6 +36,18 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "/apple-touch-icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

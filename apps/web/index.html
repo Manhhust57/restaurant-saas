@@ -3,68 +3,203 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TQM Integrated | Nền tảng quản lý nhà hàng</title>
+    <title>TQM | Phần mềm gọi món QR cho quán ăn, nhà hàng</title>
     <meta
       name="description"
-      content="Giải pháp quản lý nhà hàng với gọi món bằng QR, quản lý thực đơn, đơn hàng và quy trình bếp trên một nền tảng."
+      content="Phần mềm gọi món bằng QR cho quán ăn và nhà hàng. Quản lý thực đơn, đơn hàng realtime, POS thu ngân và màn hình bếp trên một hệ thống."
+    />
+    <meta
+      name="keywords"
+      content="phần mềm gọi món, phần mềm gọi món QR, phần mềm quản lý nhà hàng, phần mềm quản lý quán ăn, gọi món bằng QR, POS nhà hàng, menu QR"
     />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://toquocmanh.id.vn/" />
     <meta name="theme-color" content="#0b1220" />
-    <meta name="application-name" content="TQM Integrated" />
+    <meta name="application-name" content="TQM" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="TQM" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="msapplication-TileColor" content="#0b1220" />
     <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64x64.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
     <link rel="apple-touch-icon" sizes="167x167" href="/apple-touch-icon-167x167.png" />
     <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
     <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
     <link rel="preconnect" href="https://res.cloudinary.com" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="TQM Integrated | Nền tảng quản lý nhà hàng" />
+    <meta property="og:title" content="TQM | Phần mềm gọi món QR cho quán ăn, nhà hàng" />
     <meta
       property="og:description"
-      content="Giải pháp quản lý nhà hàng với gọi món bằng QR, quản lý thực đơn, đơn hàng và quy trình bếp trên một nền tảng."
+      content="Phần mềm gọi món bằng QR cho quán ăn và nhà hàng. Quản lý thực đơn, đơn hàng realtime, POS thu ngân và màn hình bếp trên một hệ thống."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://toquocmanh.id.vn/" />
     <meta property="og:image" content="https://toquocmanh.id.vn/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="TQM Integrated - Restaurant SaaS" />
-    <meta property="og:site_name" content="TQM Integrated" />
+    <meta property="og:image:alt" content="TQM - Phần mềm gọi món QR cho quán ăn" />
+    <meta property="og:site_name" content="TQM" />
     <meta property="og:locale" content="vi_VN" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="TQM Integrated | Nền tảng quản lý nhà hàng" />
+    <meta name="twitter:title" content="TQM | Phần mềm gọi món QR cho quán ăn, nhà hàng" />
     <meta
       name="twitter:description"
-      content="Giải pháp quản lý nhà hàng với gọi món bằng QR, quản lý thực đơn, đơn hàng và quy trình bếp trên một nền tảng."
+      content="Phần mềm gọi món bằng QR cho quán ăn và nhà hàng. Quản lý thực đơn, đơn hàng realtime, POS thu ngân và màn hình bếp trên một hệ thống."
     />
     <meta name="twitter:image" content="https://toquocmanh.id.vn/og-image.png" />
 
-    <!-- JSON-LD -->
+    <!-- JSON-LD: Organization + SoftwareApplication + WebSite -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "TQM Integrated",
-        "alternateName": "Restaurant SaaS",
-        "url": "https://toquocmanh.id.vn/",
-        "description": "Giải pháp quản lý nhà hàng với gọi món bằng QR, quản lý thực đơn, đơn hàng và quy trình bếp trên một nền tảng.",
-        "inLanguage": "vi-VN"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://toquocmanh.id.vn/#organization",
+            "name": "TQM",
+            "alternateName": ["TQM Integrated", "Phần mềm gọi món QR TQM"],
+            "url": "https://toquocmanh.id.vn/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://toquocmanh.id.vn/android-chrome-512x512.png",
+              "width": 512,
+              "height": 512
+            },
+            "image": "https://toquocmanh.id.vn/og-image.png",
+            "description": "TQM cung cấp phần mềm gọi món QR và quản lý vận hành cho quán ăn, nhà hàng.",
+            "areaServed": {
+              "@type": "Country",
+              "name": "Vietnam"
+            },
+            "knowsAbout": [
+              "phần mềm gọi món QR",
+              "phần mềm quản lý nhà hàng",
+              "POS nhà hàng",
+              "menu QR quán ăn"
+            ]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://toquocmanh.id.vn/#software",
+            "name": "TQM",
+            "alternateName": [
+              "TQM Integrated",
+              "Phần mềm gọi món QR TQM",
+              "Phần mềm quản lý nhà hàng TQM"
+            ],
+            "url": "https://toquocmanh.id.vn/",
+            "description": "Phần mềm gọi món bằng QR cho quán ăn và nhà hàng. Quản lý thực đơn, đơn hàng realtime, POS thu ngân và màn hình bếp trên một hệ thống.",
+            "applicationCategory": "BusinessApplication",
+            "applicationSubCategory": "Restaurant Management Software",
+            "operatingSystem": "Web",
+            "inLanguage": ["vi-VN", "vi"],
+            "image": [
+              "https://toquocmanh.id.vn/og-image.png",
+              "https://toquocmanh.id.vn/android-chrome-512x512.png"
+            ],
+            "screenshot": "https://toquocmanh.id.vn/og-image.png",
+            "featureList": [
+              "Gọi món bằng QR tại bàn",
+              "Quản lý thực đơn và danh mục món",
+              "Đơn hàng realtime",
+              "POS thu ngân nhà hàng",
+              "Màn hình bếp",
+              "Báo cáo vận hành",
+              "Đa chi nhánh / multi-tenant"
+            ],
+            "keywords": "phần mềm gọi món QR, phần mềm quản lý nhà hàng, POS nhà hàng, menu QR quán ăn",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "VND",
+              "availability": "https://schema.org/InStock",
+              "url": "https://toquocmanh.id.vn/login"
+            },
+            "provider": {
+              "@id": "https://toquocmanh.id.vn/#organization"
+            },
+            "publisher": {
+              "@id": "https://toquocmanh.id.vn/#organization"
+            },
+            "author": {
+              "@id": "https://toquocmanh.id.vn/#organization"
+            },
+            "isAccessibleForFree": true,
+            "browserRequirements": "Requires JavaScript. Requires HTML5.",
+            "installUrl": "https://toquocmanh.id.vn/login",
+            "softwareHelp": [
+              {
+                "@type": "WebPage",
+                "name": "Phần mềm gọi món QR",
+                "url": "https://toquocmanh.id.vn/phan-mem-goi-mon-qr"
+              },
+              {
+                "@type": "WebPage",
+                "name": "Phần mềm quản lý nhà hàng",
+                "url": "https://toquocmanh.id.vn/phan-mem-quan-ly-nha-hang"
+              },
+              {
+                "@type": "WebPage",
+                "name": "POS nhà hàng",
+                "url": "https://toquocmanh.id.vn/pos-nha-hang"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://toquocmanh.id.vn/#website",
+            "name": "TQM",
+            "alternateName": "Phần mềm gọi món QR cho quán ăn",
+            "url": "https://toquocmanh.id.vn/",
+            "description": "Phần mềm gọi món bằng QR cho quán ăn và nhà hàng. Quản lý thực đơn, đơn hàng realtime, POS thu ngân và màn hình bếp.",
+            "inLanguage": "vi-VN",
+            "publisher": {
+              "@id": "https://toquocmanh.id.vn/#organization"
+            },
+            "about": {
+              "@id": "https://toquocmanh.id.vn/#software"
+            },
+            "mainEntity": {
+              "@id": "https://toquocmanh.id.vn/#software"
+            },
+            "hasPart": [
+              {
+                "@type": "WebPage",
+                "name": "Phần mềm gọi món QR",
+                "url": "https://toquocmanh.id.vn/phan-mem-goi-mon-qr"
+              },
+              {
+                "@type": "WebPage",
+                "name": "Phần mềm quản lý nhà hàng",
+                "url": "https://toquocmanh.id.vn/phan-mem-quan-ly-nha-hang"
+              },
+              {
+                "@type": "WebPage",
+                "name": "POS nhà hàng",
+                "url": "https://toquocmanh.id.vn/pos-nha-hang"
+              }
+            ]
+          }
+        ]
       }
     </script>
   </head>
