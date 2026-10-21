@@ -225,7 +225,7 @@ export default function HomePage() {
                         <div className={styles.featureIcon}>POS</div>
                         <h3>POS nhà hàng</h3>
                         <p>Thu ngân nhận đơn QR, chỉnh order và đồng bộ bếp.</p>
-                        <Link to="/pos-nha-hang" className={styles.cardLink}>
+                        <Link to="/phan-mem-pos-nha-hang" className={styles.cardLink}>
                             Xem chi tiết →
                         </Link>
                     </article>
@@ -252,7 +252,7 @@ export default function HomePage() {
                     {' · '}
                     <Link to="/phan-mem-quan-ly-nha-hang">Quản lý nhà hàng</Link>
                     {' · '}
-                    <Link to="/pos-nha-hang">POS nhà hàng</Link>
+                    <Link to="/phan-mem-pos-nha-hang">POS nhà hàng</Link>
                 </span>
             </footer>
         </div>

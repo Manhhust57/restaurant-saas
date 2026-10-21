@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const base = 'http://127.0.0.1:4173';
-const routes = ['/', '/phan-mem-goi-mon-qr', '/phan-mem-quan-ly-nha-hang', '/pos-nha-hang'];
+const routes = ['/', '/phan-mem-goi-mon-qr', '/phan-mem-quan-ly-nha-hang', '/phan-mem-pos-nha-hang'];
 
 const server = spawn(process.execPath, [path.join(__dirname, 'serve-dist.mjs')], {
     cwd: path.join(__dirname, '..'),

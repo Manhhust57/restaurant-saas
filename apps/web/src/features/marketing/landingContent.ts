@@ -129,7 +129,7 @@ export const LANDING_PAGES: LandingPageContent[] = [
                 description: 'Menu, đơn, bàn, báo cáo trên một nền tảng.',
             },
             {
-                path: '/pos-nha-hang',
+                path: '/phan-mem-pos-nha-hang',
                 label: 'POS nhà hàng',
                 description: 'Thu ngân đồng bộ đơn từ QR và bếp realtime.',
             },
@@ -233,14 +233,14 @@ export const LANDING_PAGES: LandingPageContent[] = [
                 description: 'Khách tự đặt món tại bàn bằng mã QR.',
             },
             {
-                path: '/pos-nha-hang',
+                path: '/phan-mem-pos-nha-hang',
                 label: 'POS nhà hàng',
                 description: 'Thu ngân xử lý đơn và thanh toán realtime.',
             },
         ],
     },
     {
-        path: '/pos-nha-hang',
+        path: '/phan-mem-pos-nha-hang',
         eyebrow: 'POS nhà hàng',
         title: 'POS nhà hàng',
         titleHighlight: 'đồng bộ đơn QR và bếp',
