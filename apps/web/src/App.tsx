@@ -14,6 +14,15 @@ import { navItemsForRole } from './features/auth/roleAccess';
 import { loadSession, type Session } from './shared/auth/session';
 import { applyDocumentMeta } from './shared/seo/documentMeta';
 
+function isPublicPath(pathname: string) {
+    return (
+        pathname === '/' ||
+        MARKETING_PATHS.includes(pathname) ||
+        pathname === '/customer' ||
+        pathname.startsWith('/customer/')
+    );
+}
+
 export default function App() {
     const { pathname } = useLocation();
     const [session, setSession] = useState<Session | null | undefined>(undefined);
@@ -23,6 +32,12 @@ export default function App() {
     }, [pathname]);
 
     useEffect(() => {
+        // Public marketing/customer pages do not need auth; skip /auth/me entirely.
+        if (isPublicPath(pathname)) {
+            setSession(null);
+            return;
+        }
+
         let cancelled = false;
         loadSession().then((value) => {
             if (!cancelled) setSession(value);

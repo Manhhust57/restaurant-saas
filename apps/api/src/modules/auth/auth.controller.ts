@@ -4,6 +4,7 @@ import type { Response } from 'express';
 import { Throttle } from '@nestjs/throttler';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { OptionalJwtAuthGuard } from '../../common/guards/optional-jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { TenantGuard } from '../../common/guards/tenant.guard';
 import { AuthService } from './auth.service';
@@ -56,9 +57,13 @@ export class AuthController {
         return { ok: true };
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(OptionalJwtAuthGuard)
     @Get('me')
-    me(@Req() req: { user: { email: string; tenantId: string; role: string } }) {
+    me(@Req() req: { user?: { email: string; tenantId: string; role: string } | null }) {
+        if (!req.user) {
+            // 200 + null avoids browser console noise from expected anonymous visits.
+            return null;
+        }
         return {
             email: req.user.email,
             tenantId: req.user.tenantId ?? '',

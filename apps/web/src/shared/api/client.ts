@@ -34,5 +34,14 @@ export async function apiRequest<T>(path: string, options: ApiOptions = {}): Pro
         throw new Error(message);
     }
 
-    return response.json() as Promise<T>;
+    if (response.status === 204) {
+        return null as T;
+    }
+
+    const text = await response.text();
+    if (!text) {
+        return null as T;
+    }
+
+    return JSON.parse(text) as T;
 }

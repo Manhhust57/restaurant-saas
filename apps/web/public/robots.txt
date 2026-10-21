@@ -1,9 +1,21 @@
 User-agent: *
 Allow: /
+Allow: /pos-nha-hang
+Allow: /phan-mem-goi-mon-qr
+Allow: /phan-mem-quan-ly-nha-hang
+
+# App routes only (exact /pos, not landing /pos-nha-hang)
 Disallow: /login
+Disallow: /login/
 Disallow: /admin
+Disallow: /admin/
 Disallow: /saas
-Disallow: /pos
+Disallow: /saas/
+Disallow: /pos$
+Disallow: /pos/
 Disallow: /kitchen
+Disallow: /kitchen/
+Disallow: /customer
+Disallow: /customer/
 
 Sitemap: https://toquocmanh.id.vn/sitemap.xml

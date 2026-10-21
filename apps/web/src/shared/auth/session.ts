@@ -2,9 +2,22 @@ import { apiRequest } from '../api';
 
 export type Session = { email: string; tenantId: string; role: string };
 
-export function loadSession() {
-    localStorage.removeItem('restaurant_access_token');
-    return apiRequest<Session>('/api/v1/auth/me', { redirectOnUnauthorized: false }).catch(() => null);
+function isSession(value: unknown): value is Session {
+    if (!value || typeof value !== 'object') return false;
+    const candidate = value as Partial<Session>;
+    return Boolean(candidate.email && candidate.role);
+}
+
+export async function loadSession(): Promise<Session | null> {
+    try {
+        const data = await apiRequest<Session | null>('/api/v1/auth/me', {
+            authenticated: false,
+            redirectOnUnauthorized: false,
+        });
+        return isSession(data) ? data : null;
+    } catch {
+        return null;
+    }
 }
 
 export async function logout() {
