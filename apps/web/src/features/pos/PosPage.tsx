@@ -60,6 +60,20 @@ function toneLabel(tone: TableTone) {
     return 'Trống';
 }
 
+function orderStatusLabel(status: string) {
+    const labels: Record<string, string> = {
+        DRAFT: 'Nháp',
+        PENDING: 'Chờ gửi bếp',
+        CONFIRMED: 'Đã gửi bếp',
+        PREPARING: 'Đang làm',
+        READY: 'Sẵn sàng',
+        SERVED: 'Đã lên món',
+        COMPLETED: 'Đã thanh toán',
+        CANCELLED: 'Đã hủy',
+    };
+    return labels[status] ?? status;
+}
+
 export default function PosPage() {
     const { session, ready, allowed } = useRoleGate('/pos');
     const [orders, setOrders] = useState<PosOrder[]>([]);
@@ -372,8 +386,8 @@ export default function PosPage() {
                             disabled={busy || !canCancelLine}
                             title={
                                 canCancelLine
-                                    ? 'Hủy món (PENDING → CANCELLED)'
-                                    : 'Hủy cả đơn thay vì hủy món cuối'
+                                    ? 'Hủy món đang chờ'
+                                    : 'Không hủy món cuối. Hãy hủy cả đơn.'
                             }
                             onClick={() => void cancelPendingItem(item.id)}
                         >
@@ -392,14 +406,14 @@ export default function PosPage() {
 
     if (!ready) return <p>Đang kiểm tra đăng nhập...</p>;
     if (!session) {
-        return <LoginPrompt title="POS / Staff" description="Đăng nhập để xem và xử lý đơn." />;
+        return <LoginPrompt title="Thu ngân" description="Đăng nhập để xem và xử lý đơn." />;
     }
     if (!allowed) return <p>Đang chuyển hướng...</p>;
 
     const navActions = (
         <>
-            {canManage && <Link to="/admin">Admin</Link>}
-            <Link to="/kitchen">Kitchen</Link>
+            {canManage && <Link to="/admin">Quản trị</Link>}
+            <Link to="/kitchen">Bếp</Link>
             <button type="button" onClick={() => void logout()}>Đăng xuất</button>
         </>
     );
@@ -407,7 +421,7 @@ export default function PosPage() {
     if (!selectedTable) {
         return (
             <div className={styles['pos-shell']}>
-                <OpsHeader kicker="POS" title="Table Map" summary={live ? 'Live' : 'Offline'} actions={navActions} />
+                <OpsHeader kicker="Thu ngân" title="Sơ đồ bàn" summary={live ? 'Trực tiếp' : 'Mất kết nối'} actions={navActions} />
                 {error && <div className={styles.error}>{error}</div>}
                 <div className={styles['map-body']}>
                     <div className={styles['map-toolbar']}>
@@ -512,11 +526,11 @@ export default function PosPage() {
     return (
         <div className={styles['pos-shell']}>
             <OpsHeader
-                kicker="POS"
+                kicker="Thu ngân"
                 title={selectedTable.name}
-                summary={`${headerCount} món · ${displayTotal.toLocaleString('vi-VN')} đ · ${live ? 'Live' : 'Offline'}`}
+                summary={`${headerCount} món · ${displayTotal.toLocaleString('vi-VN')} đ · ${live ? 'Trực tiếp' : 'Mất kết nối'}`}
                 onBack={() => { setSelectedTable(null); setCart({}); }}
-                backLabel="Map"
+                backLabel="Sơ đồ bàn"
                 actions={navActions}
             />
             {error && <div className={styles.error}>{error}</div>}
@@ -568,18 +582,18 @@ export default function PosPage() {
                         <h2>Đơn hàng {selectedTable.name}</h2>
                         <p>
                             {selectedTable.code}
-                            {activeOrder ? ` · ${activeOrder.orderNumber} · ${activeOrder.status}` : ''}
+                            {activeOrder ? ` · ${activeOrder.orderNumber} · ${orderStatusLabel(activeOrder.status)}` : ''}
                         </p>
                     </div>
 
                     <div className={styles['cart-lines']}>
                         {!orderLines.length && !cartLines.length && (
-                            <p className={styles.muted}>Chọn món bên trái để thêm vào đơn.</p>
+                            <p className={styles.muted}>Chọn món để thêm vào đơn.</p>
                         )}
 
                         {!!pendingLines.length && (
                             <div className={styles['order-section']}>
-                                <div className={styles['section-label']}>Chờ / sửa được (PENDING)</div>
+                                <div className={styles['section-label']}>Chờ gửi bếp</div>
                                 {pendingLines.map((item) => renderPendingLine(item))}
                             </div>
                         )}
@@ -669,8 +683,8 @@ export default function PosPage() {
                                     disabled={!allowCancelOrder || cancellingOrder}
                                     title={
                                         allowCancelOrder
-                                            ? 'Hủy đơn (soft-cancel mọi PENDING)'
-                                            : 'Không hủy được: đã vào bếp hoặc còn món gọi thêm chưa gửi'
+                                            ? 'Hủy các món đang chờ'
+                                            : 'Không hủy được: món đã vào bếp hoặc còn món gọi thêm chưa gửi'
                                     }
                                     onClick={() => void cancelActiveOrder()}
                                 >

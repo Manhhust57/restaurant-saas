@@ -1,3 +1,5 @@
+https://console.cron-job.org/jobs/8800477/history 
+call backend 10 minute
 # Restaurant SaaS starter
 
 This repository is a minimal monorepo starter for a multi-tenant restaurant SaaS based on the architecture discussed in the design brief.

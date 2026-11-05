@@ -4,6 +4,17 @@ import styles from '../MerchantAdminPage.module.css';
 
 const ROLES: StaffRole[] = ['MANAGER', 'CASHIER', 'WAITER', 'KITCHEN'];
 
+const ROLE_LABELS: Record<StaffRole, string> = {
+    MANAGER: 'Quản lý',
+    CASHIER: 'Thu ngân',
+    WAITER: 'Phục vụ',
+    KITCHEN: 'Bếp',
+};
+
+function roleLabel(role: string) {
+    return ROLE_LABELS[role as StaffRole] ?? role;
+}
+
 export default function StaffManager() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -25,7 +36,7 @@ export default function StaffManager() {
                 fullName: fullName.trim(),
                 role,
             });
-            setNotice(`Đã tạo ${created.fullName} · ${created.role} (${created.email})`);
+            setNotice(`Đã tạo ${created.fullName} · ${roleLabel(created.role)} (${created.email})`);
             setEmail('');
             setPassword('');
             setFullName('');
@@ -40,7 +51,7 @@ export default function StaffManager() {
     return (
         <section className={styles['admin-panel']}>
             <h3>Nhân viên</h3>
-            <p className={styles['admin-meta']}>Tạo tài khoản gắn vào tenant hiện tại. Role OWNER chỉ có qua tạo tenant.</p>
+            <p className={styles['admin-meta']}>Tạo tài khoản cho quán đang đăng nhập. Quyền Chủ quán không tạo ở đây.</p>
             {error && <p className="error">{error}</p>}
             {notice && <p className="success">{notice}</p>}
             <form className={styles['admin-form']} onSubmit={onSubmit}>
@@ -58,10 +69,10 @@ export default function StaffManager() {
                         <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required minLength={6} />
                     </label>
                     <label>
-                        Role
+                        Quyền
                         <select value={role} onChange={(event) => setRole(event.target.value as StaffRole)}>
                             {ROLES.map((entry) => (
-                                <option key={entry} value={entry}>{entry}</option>
+                                <option key={entry} value={entry}>{ROLE_LABELS[entry]}</option>
                             ))}
                         </select>
                     </label>
